@@ -36,14 +36,17 @@ end)
 function Main:Enter()
     local ped = PlayerPedId()
     local pedCoords = GetEntityCoords(PlayerPedId())
-    local objectId = GetClosestObjectOfType(pedCoords, 5.0, Config.TrashCans.Model, false)
-    if DoesEntityExist(objectId) then
-        inside = true
-        local objectcoords = GetEntityCoords(objectId)
-        oldcoords = GetEntityCoords(ped)
-        SetEntityCoords(ped, objectcoords.x, objectcoords.y, objectcoords.z, 0.0, 0.0, 0.0)
-        FreezeEntityPosition(ped, true)
-        SetEntityVisible(ped, false)
+    for k,v in pairs(Config.TrashCans.Model) do
+        local objectId = GetClosestObjectOfType(pedCoords, 1.0, Config.TrashCans.Model[k], false)
+        if DoesEntityExist(objectId) then
+            inside = true
+            local objectcoords = GetEntityCoords(objectId)
+            oldcoords = GetEntityCoords(ped)
+            SetEntityCoords(ped, objectcoords.x, objectcoords.y, objectcoords.z, 0.0, 0.0, 0.0)
+            FreezeEntityPosition(ped, true)
+            SetEntityVisible(ped, false)
+            return
+        end
     end
 end
 
