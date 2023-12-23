@@ -34,6 +34,7 @@ RegisterNetEvent('bbv:hideintrash:exit',function()
 end)
 
 function Main:Enter()
+    if inside then return end
     local ped = PlayerPedId()
     local pedCoords = GetEntityCoords(PlayerPedId())
     for k,v in pairs(Config.TrashCans.Model) do
