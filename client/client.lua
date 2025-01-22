@@ -6,23 +6,45 @@ CreateThread(function()
 end)
 
 function Main:Int()
-    exports['qb-target']:AddTargetModel(Config.TrashCans.Model, {
-        options = {
+    if Config.Settings.Target == "QB" then 
+        exports['qb-target']:AddTargetModel(Config.TrashCans.Model, {
+            options = {
+                {
+                    event = 'bbv:hideintrash:enter',
+                    type = 'client',
+                    icon = "fa-solid fa-trash-can",
+                    label = Lang.Hide,
+                },
+                {
+                    event = 'bbv:hideintrash:exit',
+                    type = 'client',
+                    icon = "fa-solid fa-trash-can",
+                    label = Lang.Exit,
+                },
+            },
+            distance = Config.TrashCans.Distance,
+        })
+    end
+    if Config.Settings.Target == "OX" then
+        exports['ox_target']:addModel(Config.TrashCans.Model, {
             {
+                label = Lang.Hide,
                 event = 'bbv:hideintrash:enter',
                 type = 'client',
                 icon = "fa-solid fa-trash-can",
-                label = Lang.Hide,
+                distance = Config.TrashCans.Distance,
+                -- Additional optional parameters can be added as needed
             },
             {
+                label = Lang.Exit,
                 event = 'bbv:hideintrash:exit',
                 type = 'client',
                 icon = "fa-solid fa-trash-can",
-                label = Lang.Exit,
+                distance = Config.TrashCans.Distance,
+                -- Additional optional parameters can be added as needed
             },
-        },
-        distance = Config.TrashCans.Distance,
-    })
+        })
+    end
 end
 
 RegisterNetEvent('bbv:hideintrash:enter',function()

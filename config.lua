@@ -7,5 +7,5 @@ Config.TrashCans = {
 }
 
 Config.Settings = {
-    Target = "QB", -- QB/OX
+    Target = "OX", -- QB/OX
 }
